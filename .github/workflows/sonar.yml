@@ -33,7 +33,7 @@ jobs:
         run: |
           cd frontend
           npm ci
-          npm test -- --coverage
+          npm test
           cd ..
       
       - name: SonarCloud Scan
