@@ -83,7 +83,9 @@ jobs:
   deploy:
     needs: docker
     runs-on: ubuntu-latest
+    env:
+      RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
     steps:
       - name: Deploy to Render
-        if: ${{ secrets.RENDER_DEPLOY_HOOK != '' }}
-        run: curl -X POST "${{ secrets.RENDER_DEPLOY_HOOK }}"
+        if: ${{ env.RENDER_DEPLOY_HOOK != '' }}
+        run: curl -X POST "$RENDER_DEPLOY_HOOK"
