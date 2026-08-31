@@ -61,6 +61,7 @@ jobs:
   docker:
     needs: build
     runs-on: ubuntu-latest
+    environment: ${{ github.ref_name == 'production' && 'production' || 'development' }}
     strategy:
       matrix:
         service: [frontend, backend]
@@ -76,7 +77,8 @@ jobs:
           context: ${{ matrix.service }}
           file: ${{ matrix.service }}/Dockerfile
           push: true
-          tags: ${{ secrets.DOCKER_USERNAME }}/simpletasks-${{ matrix.service }}:latest
+          tags: >
+            ${{ secrets.DOCKER_USERNAME }}/simpletasks-${{ matrix.service }}:${{ github.ref_name == 'production' && 'prod' || 'dev' }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
 
