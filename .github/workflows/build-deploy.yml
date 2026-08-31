@@ -5,6 +5,9 @@ on:
     branches: [main, production]
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -81,6 +84,13 @@ jobs:
             ${{ secrets.DOCKER_USERNAME }}/simpletasks-${{ matrix.service }}:${{ github.ref_name == 'production' && 'prod' || 'dev' }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+      - name: Snyk container scan
+        uses: snyk/actions/docker@master
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+        with:
+          image: ${{ secrets.DOCKER_USERNAME }}/simpletasks-${{ matrix.service }}:${{ github.ref_name == 'production' && 'prod' || 'dev' }}
+          args: --severity-threshold=high
 
   deploy:
     needs: docker
