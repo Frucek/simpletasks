@@ -1,0 +1,18 @@
+# Snyk policy file
+# Ignores vulnerabilities in npm's own toolchain dependencies
+# These are transitive dependencies of npm that are beyond application control
+
+version: v1.25.0
+ignore:
+  SNYK-JS-PICOMATCH-15765511:
+    - '*':
+        reason: 'Vulnerability in npm toolchain dependency (picomatch). Tracked in node-gyp > tinyglobby.'
+        expires: 2026-12-31T00:00:00Z
+  SNYK-JS-TAR-17909068:
+    - '*':
+        reason: 'Vulnerability in npm toolchain dependency (tar). Awaiting npm update to patch.'
+        expires: 2026-12-31T00:00:00Z
+  SNYK-JS-TAR-17909152:
+    - '*':
+        reason: 'Vulnerability in npm toolchain dependency (tar). Awaiting npm update to patch.'
+        expires: 2026-12-31T00:00:00Z

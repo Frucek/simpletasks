@@ -90,7 +90,7 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           image: ${{ secrets.DOCKER_USERNAME }}/simpletasks-${{ matrix.service }}:${{ github.ref_name == 'production' && 'prod' || 'dev' }}
-          args: --severity-threshold=high --exclude-dirs=/usr/local/lib/node_modules
+          args: --severity-threshold=high --policy-path=.snyk
 
   deploy:
     needs: docker
