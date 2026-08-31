@@ -12,6 +12,7 @@ module.exports = {
     '/build/',
     '/coverage/'
   ],
+  coverageDirectory: './coverage',
   coverageReporters: ['lcov', 'text', 'text-summary'],
   testMatch: ['**/*.test.js']
 };

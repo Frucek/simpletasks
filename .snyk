@@ -4,15 +4,87 @@
 
 version: v1.25.0
 ignore:
+  # brace-expansion vulnerabilities (multiple)
+  SNYK-JS-BRACEEXPANSION-15789759:
+    - '*':
+        reason: 'Infinite loop in npm toolchain dependency (brace-expansion). Awaiting npm/sigstore update.'
+        expires: 2026-12-31T00:00:00Z
+  SNYK-JS-BRACEEXPANSION-17706650:
+    - '*':
+        reason: 'Inefficient Algorithmic Complexity in brace-expansion. Awaiting npm/sigstore update.'
+        expires: 2026-12-31T00:00:00Z
+  SNYK-JS-BRACEEXPANSION-18313044:
+    - '*':
+        reason: 'Allocation of Resources without Limits in brace-expansion. Awaiting npm/sigstore update.'
+        expires: 2026-12-31T00:00:00Z
+  SNYK-JS-BRACEEXPANSION-18512280:
+    - '*':
+        reason: 'Allocation of Resources without Limits in brace-expansion. Awaiting npm/sigstore update.'
+        expires: 2026-12-31T00:00:00Z
+  
+  # isaacs/brace-expansion vulnerability (critical)
+  SNYK-JS-ISAACSBRACEEXPANSION-15208653:
+    - '*':
+        reason: 'Allocation of Resources without Limits in @isaacs/brace-expansion. Tracked in npm > minimatch.'
+        expires: 2026-12-31T00:00:00Z
+  
+  # minimatch vulnerabilities
+  SNYK-JS-MINIMATCH-15309438:
+    - '*':
+        reason: 'ReDoS in minimatch. Awaiting npm transitive dependency update.'
+        expires: 2026-12-31T00:00:00Z
+  SNYK-JS-MINIMATCH-15353387:
+    - '*':
+        reason: 'ReDoS in minimatch. Awaiting npm transitive dependency update.'
+        expires: 2026-12-31T00:00:00Z
+  SNYK-JS-MINIMATCH-15353389:
+    - '*':
+        reason: 'Inefficient Algorithmic Complexity in minimatch. Awaiting npm transitive dependency update.'
+        expires: 2026-12-31T00:00:00Z
+  
+  # pacote vulnerability
+  SNYK-JS-PACOTE-8225084:
+    - '*':
+        reason: 'DoS in pacote. Awaiting npm update to pacote@21.5.1+.'
+        expires: 2026-12-31T00:00:00Z
+  
+  # sigstore vulnerabilities
+  SNYK-JS-SIGSTORE-17817054:
+    - '*':
+        reason: 'Improper Verification of Cryptographic Signature in sigstore. Awaiting npm update.'
+        expires: 2026-12-31T00:00:00Z
+  SNYK-JS-SIGSTOREVERIFY-17817052:
+    - '*':
+        reason: 'Improper Verification of Cryptographic Signature in @sigstore/verify. Awaiting npm update.'
+        expires: 2026-12-31T00:00:00Z
+  
+  # tar vulnerabilities
+  SNYK-JS-TAR-15307072:
+    - '*':
+        reason: 'Directory Traversal in tar. Awaiting npm update to tar@7.5.8+.'
+        expires: 2026-12-31T00:00:00Z
+  SNYK-JS-TAR-15416075:
+    - '*':
+        reason: 'Symlink Attack in tar. Awaiting npm update to tar@7.5.10+.'
+        expires: 2026-12-31T00:00:00Z
+  SNYK-JS-TAR-15456201:
+    - '*':
+        reason: 'Symlink Attack in tar. Awaiting npm update to tar@7.5.11+.'
+        expires: 2026-12-31T00:00:00Z
+  
+  # picomatch vulnerability
   SNYK-JS-PICOMATCH-15765511:
     - '*':
-        reason: 'Vulnerability in npm toolchain dependency (picomatch). Tracked in node-gyp > tinyglobby.'
+        reason: 'ReDoS in picomatch. Tracked in node-gyp > tinyglobby. Awaiting upstream fix.'
         expires: 2026-12-31T00:00:00Z
+  
+  # Additional tar vulnerabilities
   SNYK-JS-TAR-17909068:
     - '*':
-        reason: 'Vulnerability in npm toolchain dependency (tar). Awaiting npm update to patch.'
+        reason: 'Infinite loop in tar. Awaiting npm update to tar@7.5.18+.'
         expires: 2026-12-31T00:00:00Z
   SNYK-JS-TAR-17909152:
     - '*':
-        reason: 'Vulnerability in npm toolchain dependency (tar). Awaiting npm update to patch.'
+        reason: 'Allocation of Resources without Limits in tar. Awaiting npm update to tar@7.5.19+.'
         expires: 2026-12-31T00:00:00Z
+
