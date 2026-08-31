@@ -1,0 +1,50 @@
+import { useEffect, useState } from 'react';
+
+const API = import.meta.env.VITE_API_URL || 'http://localhost:3001';
+
+export default function App() {
+  const [tasks, setTasks] = useState([]);
+  const [title, setTitle] = useState('');
+
+  const load = () => fetch(`${API}/api/tasks`).then(r => r.json()).then(setTasks);
+  useEffect(() => { load(); }, []);
+
+  const addTask = async (e) => {
+    e.preventDefault();
+    if (!title.trim()) return;
+    await fetch(`${API}/api/tasks`, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ title }),
+    });
+    setTitle('');
+    load();
+  };
+
+  const toggle = async (id) => {
+    await fetch(`${API}/api/tasks/${id}`, { method: 'PUT' });
+    load();
+  };
+
+  const remove = async (id) => {
+    await fetch(`${API}/api/tasks/${id}`, { method: 'DELETE' });
+    load();
+  };
+
+  return (
+    <div style={{ maxWidth: 400, margin: '2rem auto', fontFamily: 'sans-serif' }}>
+      <h1>SimpleTasks</h1>
+      <form onSubmit={addTask}>
+        <input value={title} onChange={e => setTitle(e.target.value)} placeholder="New task" />
+        <button type="submit">Add</button>
+      </form>
+      <ul>
+        {tasks.map(t => (
+          <li key={t.id} style={{ textDecoration: t.done ? 'line-through' : 'none' }}>
+            <span onClick={() => toggle(t.id)}>{t.title}</span>
+            <button onClick={() => remove(t.id)}>x</button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
